@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class DateServiceTest {
 
@@ -14,6 +15,23 @@ class DateServiceTest {
     @BeforeEach
     void setUp() {
         dateServiceUnderTest = new DateService();
+    }
+
+    @Test
+    void testGetDaysSinceBegining() {
+        long result = dateServiceUnderTest.getDaysSinceBegining(LocalDate.of(1900, 1, 11));
+        assertEquals(10L, result);
+
+        //1904 is leap year
+        result = dateServiceUnderTest.getDaysSinceBegining(LocalDate.of(1905, 1, 1));
+        assertEquals((365 * 4) + 366, result);
+    }
+
+    @Test
+    void testValidatino() {
+        assertThrows(IllegalStateException.class, () -> dateServiceUnderTest.calculateDays(null, LocalDate.of(2017, 1, 3)));
+        assertThrows(IllegalStateException.class, () -> dateServiceUnderTest.calculateDays(LocalDate.of(2017, 1, 3), null));
+        assertThrows(IllegalStateException.class, () -> dateServiceUnderTest.calculateDays(null, null));
     }
 
     @Test

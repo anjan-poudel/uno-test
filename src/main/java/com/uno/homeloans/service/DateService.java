@@ -1,9 +1,11 @@
 package com.uno.homeloans.service;
 
+import org.apache.http.util.Asserts;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.Month;
+import java.util.Objects;
 
 @Service
 public class DateService {
@@ -18,6 +20,9 @@ public class DateService {
     public long calculateDays(LocalDate fromDate,
                               LocalDate toDate) {
 
+        Asserts.notNull(fromDate, "from date is required");
+        Asserts.notNull(fromDate, "to date is required");
+
         if (fromDate.equals(toDate)) {
             return 0;
         }
@@ -27,7 +32,7 @@ public class DateService {
     }
 
 
-    public long doCalculateDays(LocalDate fromDate,
+    private long doCalculateDays(LocalDate fromDate,
                                 LocalDate toDate) {
 
         long daysSinceFromDate = getDaysSinceBegining(fromDate);
@@ -46,7 +51,8 @@ public class DateService {
      * @param date
      * @return
      */
-    private long getDaysSinceBegining(LocalDate date) {
+
+     long getDaysSinceBegining(LocalDate date) {
 
         long numOfDays = 0;
 
