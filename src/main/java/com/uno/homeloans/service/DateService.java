@@ -41,6 +41,7 @@ public class DateService {
         CalculationResult result = new CalculationResult();
         result.setId(String.format("%s_%s", fromDate.format(DateTimeFormatter.BASIC_ISO_DATE),
                 toDate.format(DateTimeFormatter.BASIC_ISO_DATE)));
+        result.setValue(value);
         resultRepository.save(result);
         return value;
     }

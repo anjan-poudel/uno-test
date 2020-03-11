@@ -12,6 +12,15 @@ public class CalculationResult {
 
     private long value;
 
+    public CalculationResult(){
+        //
+    }
+
+    public CalculationResult(final String id, final long value) {
+        this.id = id;
+        this.value = value;
+    }
+
     @DynamoDBHashKey(attributeName = "key")
     public String getId() {
         return id;
