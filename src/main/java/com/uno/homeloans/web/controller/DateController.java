@@ -41,10 +41,10 @@ public class DateController {
     @GetMapping("/difference")
     public long calculateDays(@RequestParam(name = "fromDate")
                                   @ValidDate  @DateTimeFormat(pattern = "dd.MM.yyyy", iso = DateTimeFormat.ISO.DATE)
-                              LocalDate fromDate,
+                            @Valid  LocalDate fromDate,
                               @RequestParam(name = "toDate")
                               @DateTimeFormat(pattern = "dd.MM.yyyy", iso = DateTimeFormat.ISO.DATE)
-                              @ValidDate LocalDate toDate) {
+                              @ValidDate  @Valid LocalDate toDate) {
 
         return dateService.calculateDays(fromDate, toDate);
     }

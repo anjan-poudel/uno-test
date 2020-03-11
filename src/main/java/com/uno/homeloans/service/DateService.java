@@ -1,20 +1,31 @@
 package com.uno.homeloans.service;
 
+import com.uno.homeloans.repository.CalculationResultRepository;
+import com.uno.homeloans.web.model.CalculationResult;
 import org.apache.http.util.Asserts;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.Month;
+import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
 @Service
 public class DateService {
 
+    private CalculationResultRepository resultRepository;
+
+    @Autowired
+    public DateService(CalculationResultRepository resultRepository) {
+
+        this.resultRepository = resultRepository;
+    }
 
     /**
      * anchor point for all date calcuulations
      */
-    private static final  LocalDate _1900 = LocalDate.of(1900, 1, 1);
+    private static final LocalDate _1900 = LocalDate.of(1900, 1, 1);
 
 
     public long calculateDays(LocalDate fromDate,
@@ -26,14 +37,17 @@ public class DateService {
         if (fromDate.equals(toDate)) {
             return 0;
         }
-        return doCalculateDays(fromDate, toDate);
-
-
+        long value = doCalculateDays(fromDate, toDate);
+        CalculationResult result = new CalculationResult();
+        result.setId(String.format("%s_%s", fromDate.format(DateTimeFormatter.BASIC_ISO_DATE),
+                toDate.format(DateTimeFormatter.BASIC_ISO_DATE)));
+        resultRepository.save(result);
+        return value;
     }
 
 
     private long doCalculateDays(LocalDate fromDate,
-                                LocalDate toDate) {
+                                 LocalDate toDate) {
 
         long daysSinceFromDate = getDaysSinceBegining(fromDate);
         long daysSinceToDate = getDaysSinceBegining(toDate);
@@ -52,7 +66,7 @@ public class DateService {
      * @return
      */
 
-     long getDaysSinceBegining(LocalDate date) {
+    long getDaysSinceBegining(LocalDate date) {
 
         long numOfDays = 0;
 
