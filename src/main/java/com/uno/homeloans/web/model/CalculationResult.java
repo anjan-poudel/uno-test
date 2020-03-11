@@ -8,11 +8,13 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
 @DynamoDBTable(tableName = "uno.dateDiff")
 public class CalculationResult {
 
+    @DynamoDBHashKey(attributeName = "id")
     private String id;
 
+    @DynamoDBAttribute(attributeName = "value")
     private long value;
 
-    public CalculationResult(){
+    public CalculationResult() {
         //
     }
 
@@ -21,7 +23,6 @@ public class CalculationResult {
         this.value = value;
     }
 
-    @DynamoDBHashKey(attributeName = "id")
     public String getId() {
         return id;
     }
@@ -30,7 +31,6 @@ public class CalculationResult {
         this.id = id;
     }
 
-    @DynamoDBAttribute
     public long getValue() {
         return value;
     }
