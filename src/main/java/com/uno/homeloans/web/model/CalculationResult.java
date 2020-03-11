@@ -21,7 +21,7 @@ public class CalculationResult {
         this.value = value;
     }
 
-    @DynamoDBHashKey(attributeName = "key")
+    @DynamoDBHashKey(attributeName = "id")
     public String getId() {
         return id;
     }
