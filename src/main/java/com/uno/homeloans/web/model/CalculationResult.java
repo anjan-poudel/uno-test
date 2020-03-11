@@ -5,7 +5,7 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
 
 
-@DynamoDBTable(tableName = "uno.datetDiff")
+@DynamoDBTable(tableName = "uno.dateDiff")
 public class CalculationResult {
 
     private String id;
