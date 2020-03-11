@@ -23,7 +23,7 @@ Resources:
   WebServer:
     Type: AWS::EC2::Instance
     Properties:
-      ImageId: ami-010c8d01eccedf41f
+      ImageId: ami-0bd6670f4ff7a924f
       InstanceType: t1.micro
       KeyName: 'uno'
       SecurityGroups:
@@ -35,7 +35,7 @@ Resources:
           git clone git@github.com:anjan-poudel/uno-test.git
           cd uno-test
           mvn clean install
-          java -jar target/master-SNAPSHOT.jar
+          sudo java -jar target/uno-homeloans-test-1.0-SNAPSHOT.jar
 
   VPC:
     Type: AWS::EC2::VPC
