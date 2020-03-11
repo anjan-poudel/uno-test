@@ -21,7 +21,7 @@ public class DateService {
                               LocalDate toDate) {
 
         Asserts.notNull(fromDate, "from date is required");
-        Asserts.notNull(fromDate, "to date is required");
+        Asserts.notNull(toDate, "to date is required");
 
         if (fromDate.equals(toDate)) {
             return 0;

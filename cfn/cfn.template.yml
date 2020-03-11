@@ -1,0 +1,77 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Uno Homeloans Test  EC2 instance with java maven and dynamodb
+
+Resources:
+  DynamoDB:
+    Type: 'AWS::DynamoDB::Table'
+    Properties:
+      AttributeDefinitions:
+        - AttributeName: key
+          AttributeType: S
+        - AttributeName: value
+          AttributeType: N
+      KeySchema:
+        - AttributeName: "key"
+          KeyType: HASH
+        - AttributeName: "value"
+          KeyType: "RANGE"
+      ProvisionedThroughput:
+        ReadCapacityUnits: '5'
+        WriteCapacityUnits: '5'
+      TableName: uno.dateDiff
+
+  WebServer:
+    Type: AWS::EC2::Instance
+    Properties:
+      ImageId: ami-08718fd0c2b55686c
+      InstanceType: t1.micro
+      KeyName: 'uno'
+      SecurityGroups:
+        - Ref: WebServerSecurityGroup
+      UserData:
+        Fn::Base64: !Sub |
+          #!/bin/bash -xe
+          cd /workspace
+          git clone git@github.com:anjan-poudel/uno-test.git
+          cd uno-test
+          mvn clean install
+          java -jar target/master-SNAPSHOT.jar
+
+  VPC:
+    Type: AWS::EC2::VPC
+    Properties:
+      CidrBlock: 10.1.0.0/16
+      EnableDnsSupport: true
+      EnableDnsHostnames: true
+      Tags:
+        - Key: Name
+          Value:  !Join ['', [!Ref "AWS::StackName", "-VPC" ]]
+
+
+  WebServerSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    #DependsOn: 'VPC'
+    Properties:
+      GroupDescription: allow ssh and http
+      #VpcId: !Ref VPC
+      SecurityGroupIngress:
+        - CidrIp: 0.0.0.0/0
+          FromPort: 22
+          IpProtocol: 'tcp'
+          ToPort: 22
+        - CidrIp: 0.0.0.0/0
+          FromPort: 80
+          IpProtocol: 'tcp'
+          ToPort: 80
+
+
+Outputs:
+  TableName:
+    Value: !Ref 'DynamoDB'
+    Description: Table name of the newly created DynamoDB table
+
+  WebServerPublicIPAddress:
+    Description: 'The public IP address of the EC2 Instance.'
+    Value: !GetAtt WebServer.PublicDnsName
+    Export:
+      Name: !Sub '${AWS::StackName}-Public-DNS-Address'
