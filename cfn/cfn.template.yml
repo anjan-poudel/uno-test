@@ -23,7 +23,7 @@ Resources:
   WebServer:
     Type: AWS::EC2::Instance
     Properties:
-      ImageId: ami-08718fd0c2b55686c
+      ImageId: ami-010c8d01eccedf41f
       InstanceType: t1.micro
       KeyName: 'uno'
       SecurityGroups:
