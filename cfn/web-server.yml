@@ -5,9 +5,8 @@ Resources:
 
   WebServer:
     Type: AWS::EC2::Instance
-    DependsOn: "DynamoDB"
     Properties:
-      ImageId: ami-00c740625ae4d6263
+      ImageId: ami-061b1932ecca61058
       InstanceType: t1.micro
       KeyName: 'uno'
       SecurityGroups:
