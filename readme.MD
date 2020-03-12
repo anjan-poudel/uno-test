@@ -36,6 +36,9 @@ this will give you validation error
 - hit the url `http://<SUBDOMAIN>.ap-southeast-2.compute.amazonaws.com/date/difference?fromDate=01.01.2020&toDate=03.03.2020`
 and this time it will returrnr 60 as days between the dates. You can try dates before 1900, malformed date format to tetst validation
 and use a leap yer month to further test the robustness of the solution
+### Test existing stack:
+To test existing stack please browse to `httpt://ec2-3-104-78-138.ap-southeast-2.compute.amazonaws.com/date/differernce`  
+and provide parameters `fromDate` and `toDate` in format. `dd.MM.yyyy`.
 
 ### github access details:
 to be provided on request
