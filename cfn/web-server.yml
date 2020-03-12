@@ -1,21 +1,7 @@
 AWSTemplateFormatVersion: '2010-09-09'
-Description: Uno Homeloans Test  EC2 instance with java maven and dynamodb
+Description: Uno Homeloans Test  EC2 instance with java maven
 
 Resources:
-  DynamoDB:
-    Type: 'AWS::DynamoDB::Table'
-    Properties:
-      AttributeDefinitions:
-        - AttributeName: id
-          AttributeType: S
-
-      KeySchema:
-        - AttributeName: "id"
-          KeyType: HASH
-      ProvisionedThroughput:
-        ReadCapacityUnits: '5'
-        WriteCapacityUnits: '5'
-      TableName: uno.dateDiff
 
   WebServer:
     Type: AWS::EC2::Instance
@@ -59,10 +45,6 @@ Resources:
 
 
 Outputs:
-  TableName:
-    Value: !Ref 'DynamoDB'
-    Description: Table name of the newly created DynamoDB table
-
   WebServerPublicIPAddress:
     Description: 'The public IP address of the EC2 Instance.'
     Value: !GetAtt WebServer.PublicDnsName

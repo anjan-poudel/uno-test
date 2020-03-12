@@ -1,0 +1,25 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Uno Homeloans Test  dynamodb stack
+
+Resources:
+  DynamoDB:
+    Type: 'AWS::DynamoDB::Table'
+    Properties:
+      AttributeDefinitions:
+        - AttributeName: id
+          AttributeType: S
+
+      KeySchema:
+        - AttributeName: "id"
+          KeyType: HASH
+      ProvisionedThroughput:
+        ReadCapacityUnits: '5'
+        WriteCapacityUnits: '5'
+      TableName: uno.dateDiff
+
+
+
+Outputs:
+  TableName:
+    Value: !Ref 'DynamoDB'
+    Description: Table name of the newly created DynamoDB table
