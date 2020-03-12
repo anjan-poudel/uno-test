@@ -18,12 +18,12 @@ up application startup.
 ## How to deploy:
 The ec2 instance is bootstrapped to clone the git repo and build it using maven before running the springboot jar file in the target folder.
 ### configuration
-- change KeyName: 'uno' to yout aws key pair
+- create  `KeyName`:  `uno` for ssh access
 - change accessKey and secret in application.properties file under resources to your own credentials
-- launch the full stack using cfn/cfm.template.yml from aws  console
 
 ## full stack:
- create stack using `cfn.template.yml` that will create full stack with dynamo db table, ec2 instatnce and security group for ssh and http access
+ create stack using `cfn.template.yml` that will create full stack with dynamo db table, ec2 instatnce and security group for ssh and http access.
+ this is needed the first time, for subsequent deploys use `web-server.yml` instead so thatt dynamodb table doesn't get destroyed.
 
 ### web server only:
 use this template to only spin off the web server instance to reuse the existing stack's dynamodb table
