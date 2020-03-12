@@ -19,7 +19,7 @@ up application startup.
 The ec2 instance is bootstrapped to clone the git repo and build it using maven before running the springboot jar file in the target folder.
 ### configuration
 - create  `KeyName`:  `uno` for ssh access
-- change accessKey and secret in application.properties file under resources to your own credentials
+- change `accessKey` and `secret` in `application.properties` file under resources to your own credentials
 
 ## full stack:
  create stack using `cfn.template.yml` that will create full stack with dynamo db table, ec2 instatnce and security group for ssh and http access.
