@@ -23,7 +23,7 @@ Resources:
           ssh-keyscan github.com >> ~/.ssh/known_hosts
           rm -rf   /workspace/*
           cd /workspace
-          # script runs as root, so change user fir cloning git reoi
+          # script runs as root, so change user for cloning git repo
           sudo -H -u ec2-user bash -c 'git clone git@github.com:anjan-poudel/uno-test.git'
           cd uno-test
           mvn clean install
