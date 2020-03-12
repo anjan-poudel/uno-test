@@ -1,6 +1,5 @@
 package com.uno.homeloans.web.controller;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -17,8 +16,7 @@ import java.time.format.DateTimeFormatter;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-@Disabled
-class DateControllerTest {
+class DateControllerTestIT {
 
     private static DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("dd.MM.yyyy");
 
@@ -58,7 +56,7 @@ class DateControllerTest {
 
     }
 
-    //@Test
+    @Test
     void testCalculateDays_badDateFormat_beforeTime() throws MalformedURLException {
         LocalDate from = LocalDate.now();
         LocalDate to = from.plusDays(2);

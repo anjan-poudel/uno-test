@@ -2,7 +2,10 @@ package com.uno.homeloans.web.model;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBIndexHashKey;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
+
+import java.util.Objects;
 
 
 @DynamoDBTable(tableName = "uno.dateDiff")
@@ -37,5 +40,15 @@ public class CalculationResult {
 
     public void setValue(final long value) {
         this.value = value;
+    }
+
+
+
+    @Override
+    public String toString() {
+        return "CalculationResult{" +
+                "id='" + id + '\'' +
+                ", value=" + value +
+                '}';
     }
 }

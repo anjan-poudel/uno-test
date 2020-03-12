@@ -14,13 +14,11 @@ public class CalculateDateRequest {
 
 
     @NotNull
-   //@DateTimeFormat(pattern = "dd.MM.yyyy", iso = DateTimeFormat.ISO.DATE)
     @JsonDeserialize(using = LocalDateSerialiser.class)
     @ValidDate
     private  LocalDate fromDate;
 
     @NotNull
-    //@DateTimeFormat(pattern = "dd.MM.yyyy", iso = DateTimeFormat.ISO.DATE)
     @JsonDeserialize(using = LocalDateSerialiser.class)
     @ValidDate
     private  LocalDate toDate;

@@ -6,15 +6,12 @@ Resources:
     Type: 'AWS::DynamoDB::Table'
     Properties:
       AttributeDefinitions:
-        - AttributeName: key
+        - AttributeName: id
           AttributeType: S
-        - AttributeName: value
-          AttributeType: N
+
       KeySchema:
-        - AttributeName: "key"
+        - AttributeName: "id"
           KeyType: HASH
-        - AttributeName: "value"
-          KeyType: "RANGE"
       ProvisionedThroughput:
         ReadCapacityUnits: '5'
         WriteCapacityUnits: '5'
@@ -22,8 +19,9 @@ Resources:
 
   WebServer:
     Type: AWS::EC2::Instance
+    DependsOn: "DynamoDB"
     Properties:
-      ImageId: ami-066da031a3e3f5439
+      ImageId: ami-00c740625ae4d6263
       InstanceType: t1.micro
       KeyName: 'uno'
       SecurityGroups:
@@ -32,11 +30,11 @@ Resources:
         Fn::Base64: !Sub |
           #!/bin/bash -xe
           exec > >(tee /var/log/user-data.log|logger -t user-data -s 2>/dev/console) 2>&1
-         #add github to known hosts
+          # add github to known hosts
           ssh-keyscan github.com >> ~/.ssh/known_hosts
           rm -rf   /workspace/*
           cd /workspace
-          #script runs as root, so change user fir cloning git reoi
+          # script runs as root, so change user fir cloning git reoi
           sudo -H -u ec2-user bash -c 'git clone git@github.com:anjan-poudel/uno-test.git'
           cd uno-test
           mvn clean install

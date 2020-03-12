@@ -6,6 +6,9 @@ import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 import java.time.LocalDate;
 
+/*
+Validates date so that requested dates are bigger than 01.01.1900
+ */
 @Component
 public class DateValidator implements ConstraintValidator<ValidDate, LocalDate> {
 

@@ -16,6 +16,9 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 @Retention(RUNTIME)
 @Constraint(validatedBy = DateValidator.class)
 @Documented
+/**
+ * Marker interface for validating {@link LocalDate} for date calculation request.
+ */
 public @interface ValidDate {
 
     String message() default "invalid date";
