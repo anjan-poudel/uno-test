@@ -30,15 +30,15 @@ use this template to only spin off the web server instance to reuse the existing
   
 
 ## How to Test
--  get the webServer resource's public DNS (ipV4) , e.g _ec2-13-211-233-144.ap-southeast-2.compute.amazonaws.com_
+-  get the webServer resource's public DNS (ipV4) , e.g `ec2-54-252-204-199.ap-southeast-2.compute.amazonaws.com`
 - hit the url`http://<SUBDOMAIN>.ap-southeast-2.compute.amazonaws.com/date/difference?fromDate=01.01.1800&toDate=03.03.1881`
 this will give you validation error
 - hit the url `http://<SUBDOMAIN>.ap-southeast-2.compute.amazonaws.com/date/difference?fromDate=01.01.2020&toDate=03.03.2020`
 and this time it will returrnr 60 as days between the dates. You can try dates before 1900, malformed date format to tetst validation
 and use a leap yer month to further test the robustness of the solution
 ### Test existing stack:
-To test existing stack please browse to `http://ec2-3-104-78-138.ap-southeast-2.compute.amazonaws.com/date/differernce`  
-and provide parameters `fromDate` and `toDate` in format. `dd.MM.yyyy`.
+To test existing stack please browse to <http://ec2-54-252-204-199.ap-southeast-2.compute.amazonaws.com/date/differernce?fromDate=01.01.2020&toDate=03.03.2020>  
+and change/provide parameters `fromDate` and `toDate` in format. `dd.MM.yyyy`.
 
 ### github access details:
 to be provided on request
