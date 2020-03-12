@@ -37,7 +37,7 @@ this will give you validation error
 and this time it will returrnr 60 as days between the dates. You can try dates before 1900, malformed date format to tetst validation
 and use a leap yer month to further test the robustness of the solution
 ### Test existing stack:
-To test existing stack please browse to <http://ec2-54-252-204-199.ap-southeast-2.compute.amazonaws.com/date/differernce?fromDate=01.01.2020&toDate=03.03.2020>  
+To test existing stack please browse to <http://ec2-54-252-204-199.ap-southeast-2.compute.amazonaws.com/date/difference?fromDate=01.01.2020&toDate=03.03.2020>  
 and change/provide parameters `fromDate` and `toDate` in format. `dd.MM.yyyy`.
 
 ### github access details:
