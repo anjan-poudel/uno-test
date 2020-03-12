@@ -1,4 +1,4 @@
-#Date diff in days calculator
+#  Date diff in days calculator
 App to calculate difference in days given two dates
 
 ## info
